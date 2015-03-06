@@ -18,7 +18,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		TAB,  Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P,    LBRC, RBRC, ENT, \
 		LCTL, A,    S,    D,    F,    G,    H,    J,    K,    L,    SCLN, QUOT, BSLS, \
 		LSFT, Z,    X,    C,    V,    B,    N,    M,    COMM, DOT,  SLSH, RSFT, DEL, \
-		FN1,  LGUI, LALT,             SPC,                    FN2,  RGUI, RALT, RCTL),
+		FN1,  LGUI, LALT,             SPC,                    FN2,  RGUI, RALT, FN0),
 
 	// Layer 1: Functions
 	KEYMAP(
@@ -42,6 +42,7 @@ enum function_id {
 };
 
 const uint16_t PROGMEM fn_actions[] = {
+	[0] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_F20),
 	[1] = ACTION_LAYER_MOMENTARY(1),
 	[2] = ACTION_LAYER_MOMENTARY(2),
 	[3] = ACTION_FUNCTION(ESCAPE)
