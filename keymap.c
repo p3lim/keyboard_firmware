@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include "bootloader.h"
+#include "command.h"
 #include "keycode.h"
+#include "print.h"
 #include "report.h"
 #include "keymap.h"
 
@@ -15,3 +18,16 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 const uint16_t PROGMEM fn_actions[] = {};
+
+bool command_extra(uint8_t code)
+{
+	if(code == KC_B){
+		clear_keyboard();
+		print("\n\nJump to bootloader... ");
+		_delay_ms(1000);
+		bootloader_jump();
+		print("failed.\n");
+	}
+
+	return false;
+}
