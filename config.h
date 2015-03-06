@@ -1,12 +1,12 @@
 #define VENDOR_ID 0xFEED
 #define PRODUCT_ID 0x6060
 #define DEVICE_VER 0x0001
-#define MANUFACTURER
-#define PRODUCT
-#define DESCRIPTION
+#define MANUFACTURER p3lim
+#define PRODUCT P60
+#define DESCRIPTION Custom keyboard firmware
 
-#define MATRIX_ROWS
-#define MATRIX_COLS
+#define MATRIX_ROWS 5
+#define MATRIX_COLS 14
 
 #define DEBOUNCE 5
 
