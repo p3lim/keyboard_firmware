@@ -3,6 +3,7 @@
 #include "action.h"
 #include "action_code.h"
 #include "action_layer.h"
+#include "action_macro.h"
 #include "action_util.h"
 #include "bootloader.h"
 #include "command.h"
@@ -33,7 +34,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, APP, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  TRNS, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGDN, LEFT, DOWN, RGHT, \
-		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN10, FN11, FN12, TRNS, TRNS, \
 		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, TRNS, TRNS)
 };
 
@@ -41,11 +42,20 @@ enum function_id {
 	ESCAPE
 };
 
+enum macro_id {
+	NO1,
+	NO2,
+	NO3
+};
+
 const uint16_t PROGMEM fn_actions[] = {
 	[0] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_F20),
 	[1] = ACTION_LAYER_MOMENTARY(1),
 	[2] = ACTION_LAYER_MOMENTARY(2),
-	[3] = ACTION_FUNCTION(ESCAPE)
+	[3] = ACTION_FUNCTION(ESCAPE),
+	[10] = ACTION_MACRO(NO1),
+	[11] = ACTION_MACRO(NO2),
+	[12] = ACTION_MACRO(NO3)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -61,6 +71,18 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 		send_keyboard_report();
 	}
+}
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
+{
+	if(id == NO1)
+		return (record->event.pressed ? MACRO(T(F20), T(A), T(E), END) : MACRO_NONE);
+	else if(id == NO2)
+		return (record->event.pressed ? MACRO(T(F20), T(SLSH), T(O), END) : MACRO_NONE);
+	else if(id == NO3)
+		return (record->event.pressed ? MACRO(T(F20), T(O), T(A), END) : MACRO_NONE);
+
+	return MACRO_NONE;
 }
 
 bool command_extra(uint8_t code)
