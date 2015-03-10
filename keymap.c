@@ -15,7 +15,7 @@
 const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// Layer 0
 	KEYMAP(
-		FN3,  1,    2,    3,    4,    5,    6,    7,    8,    9,    0,    MINS, EQL,  BSPC, \
+		FN10, 1,    2,    3,    4,    5,    6,    7,    8,    9,    0,    MINS, EQL,  BSPC, \
 		TAB,  Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P,    LBRC, RBRC, ENT, \
 		LCTL, A,    S,    D,    F,    G,    H,    J,    K,    L,    SCLN, QUOT, BSLS, \
 		LSFT, Z,    X,    C,    V,    B,    N,    M,    COMM, DOT,  SLSH, RSFT, DEL, \
@@ -34,7 +34,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, APP, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  TRNS, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGDN, LEFT, DOWN, RGHT, \
-		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN10, FN11, FN12, TRNS, TRNS, \
+		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN20, FN21, FN22, TRNS, TRNS, \
 		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, TRNS, TRNS)
 };
 
@@ -52,10 +52,10 @@ const uint16_t PROGMEM fn_actions[] = {
 	[0] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_F20),
 	[1] = ACTION_LAYER_MOMENTARY(1),
 	[2] = ACTION_LAYER_MOMENTARY(2),
-	[3] = ACTION_FUNCTION(ESCAPE),
-	[10] = ACTION_MACRO(NO1),
-	[11] = ACTION_MACRO(NO2),
-	[12] = ACTION_MACRO(NO3)
+	[10] = ACTION_FUNCTION(ESCAPE),
+	[20] = ACTION_MACRO(NO1),
+	[21] = ACTION_MACRO(NO2),
+	[22] = ACTION_MACRO(NO3)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
