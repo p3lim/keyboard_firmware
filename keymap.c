@@ -23,7 +23,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	// Layer 1: Functions
 	KEYMAP(
-		TRNS, F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  TRNS, \
+		TRNS, F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  FN11, \
 		CAPS, HOME, UP,   END,  PGUP, INS,  PAUS, TRNS, P7,   P8,   P9,   TRNS, TRNS, NLCK, \
 		TRNS, LEFT, DOWN, RGHT, PGDN, PSCR, TRNS, TRNS, P4,   P5,   P6,   TRNS, TRNS, \
 		TRNS, VOLD, MUTE, VOLU, F21,  F22,  TRNS, TRNS, P1,   P2,   P3,   TRNS, TRNS, \
@@ -53,6 +53,7 @@ const uint16_t PROGMEM fn_actions[] = {
 	[1] = ACTION_LAYER_MOMENTARY(1),
 	[2] = ACTION_LAYER_MOMENTARY(2),
 	[10] = ACTION_FUNCTION(ESCAPE),
+	[11] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[20] = ACTION_MACRO(NO1),
 	[21] = ACTION_MACRO(NO2),
 	[22] = ACTION_MACRO(NO3)
