@@ -30,7 +30,8 @@
 			[
 				".dep",
 				"obj_*",
-				"tmk_keyboard"
+				"tmk_keyboard",
+				"misc"
 			],
 			"path": "."
 		}
