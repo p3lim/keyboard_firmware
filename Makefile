@@ -2,7 +2,7 @@
 TARGET = firmware_lufa
 
 # Core top directory
-TOP_DIR = tmk_keyboard
+TMK_DIR = tmk_core
 
 # Project directory
 TARGET_DIR = .
@@ -38,8 +38,8 @@ NKRO_ENABLE = yes
 
 # Search paths for core files
 VPATH += $(TARGET_DIR)
-VPATH += $(TOP_DIR)
+VPATH += $(TMK_DIR)
 
-include $(TOP_DIR)/protocol/lufa.mk
-include $(TOP_DIR)/common.mk
-include $(TOP_DIR)/rules.mk
+include $(TMK_DIR)/protocol/lufa.mk
+include $(TMK_DIR)/common.mk
+include $(TMK_DIR)/rules.mk

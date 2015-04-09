@@ -14,7 +14,7 @@
 	"folders":
 	[
 		{
-			"path": "tmk_keyboard"
+			"path": "tmk_core"
 		},
 		{
 			"file_exclude_patterns":
@@ -30,7 +30,7 @@
 			[
 				".dep",
 				"obj_*",
-				"tmk_keyboard",
+				"tmk_core",
 				"misc"
 			],
 			"path": "."
