@@ -32,7 +32,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// Layer 2: Functions
 	KEYMAP(
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN11, \
-		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  TRNS, \
+		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  FN12, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGDN, LEFT, DOWN, RGHT, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, APP,  TRNS)
@@ -54,6 +54,7 @@ const uint16_t PROGMEM fn_actions[] = {
 	[2] = ACTION_LAYER_MOMENTARY(2),
 	[10] = ACTION_FUNCTION(ESCAPE),
 	[11] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
+	[12] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
 	[20] = ACTION_MACRO(NO1),
 	[21] = ACTION_MACRO(NO2),
 	[22] = ACTION_MACRO(NO3)
@@ -77,9 +78,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
 	if(id == NO1)
-		return (record->event.pressed ? MACRO(T(F20), T(A), T(E), END) : MACRO_NONE);
-	else if(id == NO2)
 		return (record->event.pressed ? MACRO(T(F20), T(SLSH), T(O), END) : MACRO_NONE);
+	else if(id == NO2)
+		return (record->event.pressed ? MACRO(T(F20), T(A), T(E), END) : MACRO_NONE);
 	else if(id == NO3)
 		return (record->event.pressed ? MACRO(T(F20), T(O), T(A), END) : MACRO_NONE);
 
