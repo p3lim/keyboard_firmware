@@ -77,12 +77,21 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-	if(id == NO1)
-		return (record->event.pressed ? MACRO(T(F20), T(SLSH), T(O), END) : MACRO_NONE);
-	else if(id == NO2)
-		return (record->event.pressed ? MACRO(T(F20), T(A), T(E), END) : MACRO_NONE);
-	else if(id == NO3)
-		return (record->event.pressed ? MACRO(T(F20), T(O), T(A), END) : MACRO_NONE);
+	uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
+
+	if(id == NO1){
+		return shifted ?
+			(record->event.pressed ? MACRO(T(F20), T(SLSH), D(LSHIFT), T(O), U(LSHIFT), END) : MACRO_NONE) :
+			(record->event.pressed ? MACRO(T(F20), T(SLSH), T(O), END) : MACRO_NONE);
+	} else if(id == NO2){
+		return shifted ?
+			(record->event.pressed ? MACRO(T(F20), D(LSHIFT), T(A), T(E), U(LSHIFT), END) : MACRO_NONE) :
+			(record->event.pressed ? MACRO(T(F20), T(A), T(E), END) : MACRO_NONE);
+	} else if(id == NO3){
+		return shifted ?
+			(record->event.pressed ? MACRO(T(F20), T(O), D(LSHIFT), T(A), U(LSHIFT), END) : MACRO_NONE) :
+			(record->event.pressed ? MACRO(T(F20), T(O), T(A), END) : MACRO_NONE);
+	}
 
 	return MACRO_NONE;
 }
