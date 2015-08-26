@@ -19,13 +19,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		TAB,  Q,    W,    E,    R,    T,    Y,    U,    I,    O,    P,    LBRC, RBRC, ENT, \
 		LCTL, A,    S,    D,    F,    G,    H,    J,    K,    L,    SCLN, QUOT, BSLS, \
 		LSFT, Z,    X,    C,    V,    B,    N,    M,    COMM, DOT,  SLSH, RSFT, DEL, \
-		FN1,  LGUI, LALT,             SPC,                    FN2,  RGUI, RALT, FN0),
+		FN1,  FN3,  LALT,             SPC,                    FN2,  FN4,  RALT, FN0),
 
 	// Layer 1: Functions
 	KEYMAP(
 		TRNS, F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  TRNS, \
-		CAPS, HOME, UP,   END,  PGUP, INS,  PAUS, TRNS, TRNS, TRNS, TRNS, FN22, TRNS, TRNS, \
-		TRNS, LEFT, DOWN, RGHT, PGDN, PSCR, TRNS, TRNS, TRNS, TRNS, FN20, FN21, TRNS, \
+		CAPS, HOME, UP,   END,  PGUP, INS,  PAUS, TRNS, TRNS, TRNS, TRNS, FN19, TRNS, TRNS, \
+		TRNS, LEFT, DOWN, RGHT, PGDN, PSCR, TRNS, TRNS, TRNS, TRNS, FN17, FN18, TRNS, \
 		TRNS, VOLD, MUTE, VOLU, F21,  F22,  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 		TRNS, TRNS, TRNS,             TRNS,                   TRNS, TRNS, TRNS, NO),
 
@@ -35,7 +35,15 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  FN12, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGDN, LEFT, DOWN, RGHT, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, F17,  F18,  F19,  TRNS, TRNS, \
-		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, APP,  TRNS)
+		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, APP,  TRNS),
+
+	// Layer 3: Winkey replacement
+	KEYMAP(
+		FN20, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+		FN21, TRNS, FN22, FN23, FN24, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN22, TRNS, TRNS, \
+		TRNS, FN25, FN26, FN27, TRNS, F23,  TRNS, TRNS, TRNS, TRNS, FN25, FN26, FN27, \
+		TRNS, TRNS, FN28, CALC, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+		TRNS, TRNS, TRNS,             FN29,                   TRNS, TRNS, TRNS, TRNS)
 };
 
 enum function_id {
@@ -52,12 +60,24 @@ const uint16_t PROGMEM fn_actions[] = {
 	[0] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_F20),
 	[1] = ACTION_LAYER_MOMENTARY(1),
 	[2] = ACTION_LAYER_MOMENTARY(2),
+	[3] = ACTION_LAYER_TAP_KEY(3, KC_LGUI),
+	[4] = ACTION_LAYER_TAP_KEY(3, KC_RGUI),
 	[10] = ACTION_FUNCTION(ESCAPE),
 	[11] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[12] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
-	[20] = ACTION_MACRO(NO1),
-	[21] = ACTION_MACRO(NO2),
-	[22] = ACTION_MACRO(NO3)
+	[15] = ACTION_MACRO(NO1),
+	[16] = ACTION_MACRO(NO2),
+	[17] = ACTION_MACRO(NO3),
+	[20] = ACTION_MODS_KEY(MOD_LGUI, KC_L),
+	[21] = ACTION_MODS_KEY(MOD_LGUI, KC_TAB),
+	[22] = ACTION_MODS_KEY(MOD_LGUI, KC_UP),
+	[23] = ACTION_MODS_KEY(MOD_LGUI, KC_E),
+	[24] = ACTION_MODS_KEY(MOD_LGUI, KC_R),
+	[25] = ACTION_MODS_KEY(MOD_LGUI, KC_LEFT),
+	[26] = ACTION_MODS_KEY(MOD_LGUI, KC_DOWN),
+	[27] = ACTION_MODS_KEY(MOD_LGUI, KC_RGHT),
+	[28] = ACTION_MODS_KEY(MOD_LGUI, KC_X),
+	[29] = ACTION_MODS_KEY(MOD_LGUI | MOD_LCTL, KC_RGHT)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
