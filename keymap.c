@@ -43,7 +43,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		FN21, TRNS, FN22, FN23, FN24, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN22, TRNS, TRNS, \
 		TRNS, FN25, FN26, FN27, TRNS, F23,  TRNS, TRNS, TRNS, TRNS, FN25, FN26, FN27, \
 		TRNS, TRNS, FN28, CALC, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
-		TRNS, TRNS, TRNS,             FN29,                   TRNS, TRNS, TRNS, TRNS)
+		TRNS, TRNS, FN29,             FN30,                   TRNS, TRNS, TRNS, TRNS)
 };
 
 enum function_id {
@@ -77,7 +77,8 @@ const uint16_t PROGMEM fn_actions[] = {
 	[26] = ACTION_MODS_KEY(MOD_LGUI, KC_DOWN),
 	[27] = ACTION_MODS_KEY(MOD_LGUI, KC_RGHT),
 	[28] = ACTION_MODS_KEY(MOD_LGUI, KC_X),
-	[29] = ACTION_MODS_KEY(MOD_LGUI | MOD_LCTL, KC_RGHT)
+	[29] = ACTION_MODS_KEY(MOD_LGUI | MOD_LCTL, KC_LEFT),
+	[30] = ACTION_MODS_KEY(MOD_LGUI | MOD_LCTL, KC_RGHT)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
