@@ -17,6 +17,9 @@
 			"path": "tmk_core"
 		},
 		{
+			"path": "tmk_keyboard"
+		},
+		{
 			"file_exclude_patterns":
 			[
 				"*.eep",
