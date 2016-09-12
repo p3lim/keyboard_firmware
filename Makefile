@@ -2,7 +2,7 @@
 TARGET = firmware_lufa
 
 # Core top directory
-TMK_DIR = tmk_core
+TMK_DIR = tmk_keyboard/tmk_core
 
 # Project directory
 TARGET_DIR = .

@@ -48,7 +48,7 @@ enum macro_id {
 	NO3
 };
 
-const uint16_t PROGMEM fn_actions[] = {
+const action_t PROGMEM fn_actions[] = {
 	[0] = ACTION_LAYER_MOMENTARY(1),
 	[1] = ACTION_LAYER_MOMENTARY(2),
 	[10] = ACTION_FUNCTION(ESCAPE),
