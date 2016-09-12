@@ -1,12 +1,12 @@
-#define VENDOR_ID 0xFEED
-#define PRODUCT_ID 0x6060
+#define VENDOR_ID 0xF0DA
+#define PRODUCT_ID 0x0666
 #define DEVICE_VER 0x0001
-#define MANUFACTURER p3lim
-#define PRODUCT P60
-#define DESCRIPTION Custom keyboard firmware
+#define MANUFACTURER vnc
+#define PRODUCT S60-X
+#define DESCRIPTION Custom keyboard firmware for Sentraq S60-X
 
 #define MATRIX_ROWS 5
-#define MATRIX_COLS 14
+#define MATRIX_COLS 15
 
 #define DEBOUNCE 5
 

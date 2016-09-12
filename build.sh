@@ -1,2 +1,2 @@
 #!/bin/bash
-make clean && make && make teensy
+make clean && make && make flip
