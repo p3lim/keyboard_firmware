@@ -140,3 +140,6 @@ void matrix_print(void)
 		print("\n");
 	}
 }
+
+// have to specify this, for some reason it's not optional
+void led_set(uint8_t usb_led){}
