@@ -41,12 +41,12 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const action_t PROGMEM fn_actions[] = {
 	[0] = ACTION_LAYER_MOMENTARY(1),
 	[1] = ACTION_LAYER_MOMENTARY(2),
-	[10] = ACTION_FUNCTION(0),
+	[10] = ACTION_FUNCTION(0), // see action_function below
 	[12] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[13] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
-	[15] = ACTION_MACRO(0),
-	[16] = ACTION_MACRO(1),
-	[17] = ACTION_MACRO(2)
+	[15] = ACTION_MACRO(0), // see action_get_macro below
+	[16] = ACTION_MACRO(1), // see action_get_macro below
+	[17] = ACTION_MACRO(2) // see action_get_macro below
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
