@@ -9,8 +9,7 @@ TARGET_DIR = .
 
 # Project-specific files
 SRC = matrix.c \
-	keymap.c \
-	common.c
+	keymap.c
 
 CONFIG_H = config.h
 
