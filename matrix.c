@@ -129,17 +129,5 @@ inline matrix_row_t matrix_get_row(uint8_t row)
 	return matrix[row];
 }
 
-void matrix_print(void)
-{
-	print("\nr/c 0123456789ABCDEF\n");
-
-	for(uint8_t row = 0; row < MATRIX_ROWS; row++){
-		phex(row);
-		print(": ");
-		pbin_reverse16(matrix_get_row(row));
-		print("\n");
-	}
-}
-
 // have to specify this, for some reason it's not optional
 void led_set(uint8_t usb_led){}
