@@ -42,21 +42,15 @@ enum function_id {
 	ESCAPE
 };
 
-enum macro_id {
-	NO1,
-	NO2,
-	NO3
-};
-
 const action_t PROGMEM fn_actions[] = {
 	[0] = ACTION_LAYER_MOMENTARY(1),
 	[1] = ACTION_LAYER_MOMENTARY(2),
 	[10] = ACTION_FUNCTION(ESCAPE),
 	[12] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[13] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
-	[15] = ACTION_MACRO(NO1),
-	[16] = ACTION_MACRO(NO2),
-	[17] = ACTION_MACRO(NO3)
+	[15] = ACTION_MACRO(0),
+	[16] = ACTION_MACRO(1),
+	[17] = ACTION_MACRO(2)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -76,12 +70,13 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-	if(id == NO1){
-		return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(SLSH), RM(), T(O), END) : MACRO_NONE);
-	} else if(id == NO2){
-		return (record->event.pressed ? MACRO(T(RCTL), T(A), T(E), END) : MACRO_NONE);
-	} else if(id == NO3){
-		return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(O), RM(), T(A), END) : MACRO_NONE);
+	switch(id){
+		case 0:
+			return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(SLSH), RM(), T(O), END) : MACRO_NONE);
+		case 1:
+			return (record->event.pressed ? MACRO(T(RCTL), T(A), T(E), END) : MACRO_NONE);
+		case 2:
+			return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(O), RM(), T(A), END) : MACRO_NONE);
 	}
 
 	return MACRO_NONE;
