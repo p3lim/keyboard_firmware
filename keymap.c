@@ -38,14 +38,10 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, APP,  TRNS),
 };
 
-enum function_id {
-	ESCAPE
-};
-
 const action_t PROGMEM fn_actions[] = {
 	[0] = ACTION_LAYER_MOMENTARY(1),
 	[1] = ACTION_LAYER_MOMENTARY(2),
-	[10] = ACTION_FUNCTION(ESCAPE),
+	[10] = ACTION_FUNCTION(0),
 	[12] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[13] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
 	[15] = ACTION_MACRO(0),
@@ -55,17 +51,15 @@ const action_t PROGMEM fn_actions[] = {
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-	if(id == ESCAPE){
-		void (*method)(uint8_t) = (record->event.pressed) ? &add_key : &del_key;
-		uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
+	void (*method)(uint8_t) = (record->event.pressed) ? &add_key : &del_key;
+	uint8_t shifted = get_mods() & (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT));
 
-		if(layer_state == 0)
-			method(shifted ? KC_GRAVE : KC_ESCAPE);
-		else
-			method(shifted ? KC_ESCAPE : KC_GRAVE);
+	if(layer_state == 0)
+		method(shifted ? KC_GRAVE : KC_ESCAPE);
+	else
+		method(shifted ? KC_ESCAPE : KC_GRAVE);
 
-		send_keyboard_report();
-	}
+	send_keyboard_report();
 }
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
