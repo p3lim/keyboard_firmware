@@ -9,7 +9,7 @@ Images and a buildlog of the keyboard can be found [here](//imgur.com/a/zwsDN).
 
 ### Developing
 
-This requires linux and some tools, you can run this under WSL if you're on Windows by following [this guide](//gist.github.com/p3lim/7174909c78360606f3334bad4a0262f5)
+This requires linux and some tools, you can run this under WSL if you're on Windows by following [this guide](//gist.github.com/p3lim/7174909c78360606f3334bad4a0262f5).
 
 Install dependencies for building:
 ```bash
@@ -29,7 +29,9 @@ Create firmware files:
 make
 ```
 
-To actually flash, install [Teensy Loader CLI](https://www.pjrc.com/teensy/loader_cli.html) then run this:
+To actually flash, install [Teensy Loader CLI](//www.pjrc.com/teensy/loader_cli.html) then run this:
 ```
 make teensy
 ```
+
+Or if you prefer a GUI use the [Teensy Loader](//www.pjrc.com/teensy/loader.html).
