@@ -64,15 +64,23 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
-	switch(id){
-		case 0:
-			return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(SLSH), RM(), T(O), END) : MACRO_NONE);
-		case 1:
-			return (record->event.pressed ? MACRO(T(RCTL), T(A), T(E), END) : MACRO_NONE);
-		case 2:
-			return (record->event.pressed ? MACRO(T(RCTL), SM(), CM(), T(O), RM(), T(A), END) : MACRO_NONE);
+	// using a compose key to generate special characters
+	if(record->event.pressed){
+		// if pressed down send macro
+		switch(id){
+			case 0:
+				// rctrl + / + o
+				return MACRO(T(RCTL), SM(), CM(), T(SLSH), RM(), T(O), END);
+			case 1:
+				// rctrl + a + e
+				return MACRO(T(RCTL), T(A), T(E), END);
+			case 2:
+				// rctrl + o + a
+				return MACRO(T(RCTL), SM(), CM(), T(O), RM(), T(A), END);
+		}
 	}
 
+	// else send nothing
 	return MACRO_NONE;
 }
 
