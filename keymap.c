@@ -24,16 +24,16 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// Layer 1: Functions
 	KEYMAP(
 		TRNS, F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,   F10,  F11,  F12,  TRNS, \
-		CAPS, HOME, UP,   END,  PGUP, INS,  PAUS, TRNS, TRNS, TRNS, TRNS, FN17, TRNS, TRNS, \
-		TRNS, LEFT, DOWN, RGHT, PGDN, PSCR, TRNS, TRNS, TRNS, TRNS, FN15, FN16, TRNS, \
+		CAPS, HOME, UP,   END,  PGUP, INS,  PAUS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
+		TRNS, LEFT, DOWN, RGHT, PGDN, PSCR, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 		TRNS, VOLD, MUTE, VOLU, F21,  F22,  TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, \
 		TRNS, TRNS, TRNS,             TRNS,                   TRNS, TRNS, TRNS, NO),
 
 	// Layer 2: Functions
 	KEYMAP(
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, CALC, FN12, \
-		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGUP, HOME, UP,   END,  FN13, \
-		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, PGDN, LEFT, DOWN, RGHT, \
+		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN22, TRNS, FN13, \
+		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, FN21, FN20, TRNS, \
 		TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, TRNS, F17,  F18,  F19,  TRNS, TRNS, \
 		NO,   TRNS, TRNS,             TRNS,                   TRNS, TRNS, APP,  TRNS),
 };
@@ -44,9 +44,9 @@ const action_t PROGMEM fn_actions[] = {
 	[10] = ACTION_FUNCTION(0), // see action_function below
 	[12] = ACTION_MODS_KEY(MOD_LSFT | MOD_LCTL, KC_ESC),
 	[13] = ACTION_MODS_KEY(MOD_RALT, KC_ENT),
-	[15] = ACTION_MACRO(0), // see action_get_macro below
-	[16] = ACTION_MACRO(1), // see action_get_macro below
-	[17] = ACTION_MACRO(2) // see action_get_macro below
+	[20] = ACTION_MODS_KEY(MOD_LCTL | MOD_LALT, KC_QUOT),
+	[21] = ACTION_MODS_KEY(MOD_LCTL | MOD_LALT, KC_SCLN),
+	[22] = ACTION_MODS_KEY(MOD_LCTL | MOD_LALT, KC_LBRC)
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
@@ -60,28 +60,6 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 		key_method(is_shift_down ? KC_ESCAPE : KC_GRAVE);
 
 	send_keyboard_report();
-}
-
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-	// using a compose key to generate special characters
-	if(record->event.pressed){
-		// if pressed down send macro
-		switch(id){
-			case 0:
-				// rctrl + / + o
-				return MACRO(T(RCTL), SM(), CM(), T(SLSH), RM(), T(O), END);
-			case 1:
-				// rctrl + a + e
-				return MACRO(T(RCTL), T(A), T(E), END);
-			case 2:
-				// rctrl + o + a
-				return MACRO(T(RCTL), SM(), CM(), T(O), RM(), T(A), END);
-		}
-	}
-
-	// else send nothing
-	return MACRO_NONE;
 }
 
 bool command_extra(uint8_t code)
