@@ -28,9 +28,6 @@ See [the official documentation](https://docs.qmk.fm/#/faq_build?id=linux-udev-r
 
 Teensy also needs this, see [their udev rules](https://www.pjrc.com/teensy/00-teensy.rules).
 
-### Building
-
-
 ### Flashing
 
 #### p60
