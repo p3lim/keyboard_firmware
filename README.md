@@ -1,37 +1,51 @@
 # Keyboard Firmware
 
-This is the firmware for my hand-wired keyboard, based on the fantastic [tmk keyboard library](//github.com/tmk/tmk_keyboard/tree/master/tmk_core).  
+This is the keyboard firmware for some of my keyboards, using [QMK](https://github.com/qmk/qmk_firmware#readme).
 
-The keyboard runs on a [Teensy 2.0](http://www.pjrc.com/store/teensy.html) and has a couple of features such as multiple layers and macros.
+The repository is structured as such:
+- `common` - [userspace](https://docs.qmk.fm/#/feature_userspace)
+- `keyboards` - keyboard definitions/overrides
+- `keymaps` - keyboard keymaps
 
-Images and a buildlog of the keyboard can be found [here](//imgur.com/a/zwsDN).
+### Setup
 
+We'll use QMK's CLI to set up dependencies for us, but we're not going to use their toolkit.
 
-### Developing
-
-This requires linux and some tools, you can run this under WSL if you're on Windows by following [this guide](//gist.github.com/p3lim/7174909c78360606f3334bad4a0262f5).
-
-Install dependencies for building:
 ```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install -y git make gcc-avr avr-libc
+pip install --user qmk
+qmk setup -y -H /tmp/qmk ; rm -rf /tmp/qmk
 ```
 
-Clone repository:
+We'll also want [Teensy Loader](https://www.pjrc.com/teensy/loader_cli.html):
 ```bash
-git clone --recursive https://github.com/p3lim/keyboard_firmware
-cd keyboard_firmware
+apt install teensy-loader-cli
 ```
 
-Create firmware files:
-```
-make
+#### udev
+
+To communicate with the bootloader on Linux we need extra privileges.  
+See [the official documentation](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules) on how to set this up.
+
+Teensy also needs this, see [their udev rules](https://www.pjrc.com/teensy/00-teensy.rules).
+
+### Building
+
+
+### Flashing
+
+#### p60
+
+```bash
+make p60
 ```
 
-To actually flash, install [Teensy Loader CLI](//www.pjrc.com/teensy/loader_cli.html) then run this:
-```
-make teensy
+Press <kbd>LSHIFT</kbd> + <kbd>RSHIFT</kbd> + <kbd>B</kbd> to enter bootloader, then use [Teensy Loader](//www.pjrc.com/teensy/loader.html) to flash using the `hex/p60.hex` file.
+
+#### bface
+
+```bash
+make bface # optional
+make bface_flash
 ```
 
-Or if you prefer a GUI use the [Teensy Loader](//www.pjrc.com/teensy/loader.html).
+Hold <kbd>LCTRL</kbd> while connecting the keyboard to flash.

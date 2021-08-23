@@ -1,8 +1,1 @@
-.dep/
-obj*/
-*.eep
-*.elf
-*.hex
-*.lss
-*.map
-*.sym
+hex/

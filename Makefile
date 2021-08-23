@@ -1,44 +1,52 @@
-# Target file name
-TARGET = firmware_lufa
+setup: qmk
 
-# Core top directory
-TMK_DIR = tmk_keyboard/tmk_core
+qmk:
+	git submodule update --init --recursive
 
-# Project directory
-TARGET_DIR = .
+link:
+	# userspace
+	ln -rfs common qmk_firmware/users/custom
+	# p60
+	mkdir -p keyboards/p60/keymaps
+	ln -rfs keymaps/p60 keyboards/p60/keymaps/custom
+	ln -rfs keyboards/p60 qmk_firmware/keyboards/p60
+	# bface
+	ln -rfs keymaps/bface qmk_firmware/keyboards/winkeyless/bface/keymaps/custom
+	ln -rfs keyboards/bface/bface.h qmk_firmware/keyboards/winkeyless/bface/bface.h
 
-# Project-specific files
-SRC = matrix.c \
-	keymap.c
+unlink:
+	# userspace
+	rm -f qmk_firmware/users/custom
+	# p60
+	rm -rf keyboards/p60/keymaps
+	rm -f qmk_firmware/keyboards/p60
+	# bface
+	rm -rf qmk_firmware/keyboards/winkeyless/bface/keymaps/custom
+	rm -rf qmk_firmware/keyboards/winkeyless/bface/bface.h # needs a git reset after this
 
-CONFIG_H = config.h
+clean: unlink
+	make -C qmk_firmware clean
 
-# MCU name
-MCU = atmega32u4
+p60: setup link p60_build clean
 
-# Processor and input frequency (in Hz)
-F_CPU = 16000000
-F_USB = $(F_CPU)
+p60_flash: setup link p60_build_flash clean
 
-# Target architecture (LUFA-specific)
-ARCH = AVR8
+p60_build:
+	make -C qmk_firmware p60:custom
+	mkdir -p hex
+	cp qmk_firmware/.build/p60_custom.hex hex/p60.hex
 
-# Interrupt-driven control endpoint
-OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
+p60_build_flash: p60_build
+	teensy_loader_cli --mcu=TEENSY2 -w -v qmk_firmware/.build/p60_custom.hex
 
-# Boot section size (in bytes)
-OPT_DEFS += -DBOOTLOADER_SIZE=512
+bface: setup link bface_build clean
 
-# Features
-EXTRAKEY_ENABLE = yes
-CONSOLE_ENABLE = yes
-COMMAND_ENABLE = yes
-NKRO_ENABLE = yes
+bface_flash: setup link bface_build_flash clean
 
-# Search paths for core files
-VPATH += $(TARGET_DIR)
-VPATH += $(TMK_DIR)
+bface_build_flash:
+	make -C qmk_firmware winkeyless/bface:custom:flash
 
-include $(TMK_DIR)/protocol/lufa.mk
-include $(TMK_DIR)/common.mk
-include $(TMK_DIR)/rules.mk
+bface_build:
+	make -C qmk_firmware winkeyless/bface:custom
+	mkdir -p hex
+	cp qmk_firmware/.build/winkeyless_bface_custom.hex hex/bface.hex
