@@ -7,7 +7,7 @@ The repository is structured as such:
 - `keyboards` - keyboard definitions/overrides
 - `keymaps` - keyboard keymaps
 
-### Setup
+## Setup
 
 We'll use QMK's CLI to set up dependencies for us, but we're not going to use their toolkit.
 
@@ -21,16 +21,16 @@ We'll also want [Teensy Loader](https://www.pjrc.com/teensy/loader_cli.html):
 apt install teensy-loader-cli
 ```
 
-#### udev
+### udev
 
 To communicate with the bootloader on Linux we need extra privileges.  
 See [the official documentation](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules) on how to set this up.
 
 Teensy also needs this, see [their udev rules](https://www.pjrc.com/teensy/00-teensy.rules).
 
-### Flashing
+## Flashing
 
-#### p60
+### p60
 
 ```bash
 make p60
@@ -38,7 +38,7 @@ make p60
 
 Press <kbd>LSHIFT</kbd> + <kbd>RSHIFT</kbd> + <kbd>B</kbd> to enter bootloader, then use [Teensy Loader](//www.pjrc.com/teensy/loader.html) to flash using the `hex/p60.hex` file.
 
-#### bface
+### bface
 
 ```bash
 make bface # optional
