@@ -3,6 +3,10 @@
 // the userspace functions call "keymap" variants of themselves which are weak and can be overridden
 
 static bool state_esc = false;
+static bool state_spam = false;
+
+static uint16_t state_spam_timer = 0;
+static uint16_t state_spam_interval = 25; // ms
 
 __attribute__ ((weak))
 bool process_record_keymap(uint16_t keycode, keyrecord_t *record){
@@ -75,7 +79,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
                 }
             }
             return false;
+        case C_SPAM:
+            state_spam = record->event.pressed;
+            state_spam_timer = timer_read();
+            return false;
         default:
             return true;
+    }
+}
+
+__attribute__ ((weak))
+void matrix_scan_keymap(void){
+    // this can be overridden in a keymap
+}
+
+void matrix_scan_user(void){
+    matrix_scan_keymap();
+
+    if(state_spam){
+        if(timer_elapsed(state_spam_timer) > state_spam_interval){
+            state_spam_timer = timer_read();
+
+            tap_code(KC_SPACE);
+        }
     }
 }
