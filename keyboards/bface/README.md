@@ -1,4 +1,4 @@
-# p3lim's b.face layout
+# b.face
 
 ![](https://user-images.githubusercontent.com/26496/61170794-bf8a2c80-a56e-11e9-893f-f1766e7a9a04.png)
 
