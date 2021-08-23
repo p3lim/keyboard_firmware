@@ -3,7 +3,7 @@ setup: qmk
 qmk:
 	git submodule update --init --recursive
 
-link:
+link: clean
 	# userspace
 	ln -rfs common qmk_firmware/users/custom
 	# p60
