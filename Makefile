@@ -29,8 +29,8 @@ p60_build:
 	mkdir -p hex
 	cp qmk_firmware/.build/p60_custom.hex hex/p60.hex
 
-p60_build_flash: p60_build
-	teensy_loader_cli --mcu=TEENSY2 -w -v qmk_firmware/.build/p60_custom.hex
+p60_build_flash:
+	make -C qmk_firmware p60:custom:flash
 
 bface: setup link bface_build clean
 
