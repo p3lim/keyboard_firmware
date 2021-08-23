@@ -14,18 +14,10 @@ link:
 	ln -rfs keymaps/bface qmk_firmware/keyboards/winkeyless/bface/keymaps/custom
 	ln -rfs keyboards/bface/bface.h qmk_firmware/keyboards/winkeyless/bface/bface.h
 
-unlink:
-	# userspace
-	rm -f qmk_firmware/users/custom
-	# p60
-	rm -rf keyboards/p60/keymaps
-	rm -f qmk_firmware/keyboards/p60
-	# bface
-	rm -rf qmk_firmware/keyboards/winkeyless/bface/keymaps/custom
-	rm -rf qmk_firmware/keyboards/winkeyless/bface/bface.h # needs a git reset after this
-
-clean: unlink
+clean:
 	make -C qmk_firmware clean
+	git -C qmk_firmware reset --hard
+	rm -rf keyboards/p60/keymaps
 
 p60: setup link p60_build clean
 
