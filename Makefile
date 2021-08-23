@@ -17,6 +17,7 @@ link:
 clean:
 	make -C qmk_firmware clean
 	git -C qmk_firmware reset --hard
+	git -C qmk_firmware clean -df
 	rm -rf keyboards/p60/keymaps
 
 p60: setup link p60_build clean
