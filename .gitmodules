@@ -1,4 +1,4 @@
-[submodule "tmk_keyboard"]
-	path = tmk_keyboard
-	url = https://github.com/tmk/tmk_keyboard
+[submodule "qmk_firmware"]
+	path = qmk_firmware
+	url = https://github.com/qmk/qmk_firmware
 	shallow = true
