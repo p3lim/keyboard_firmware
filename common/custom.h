@@ -14,5 +14,6 @@ enum {
     C_KVM2,
     C_KVM3,
     C_KVM4,
-    C_SPAM
+    C_SPAM,
+    C_PSCR
 };

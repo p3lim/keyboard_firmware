@@ -4,6 +4,8 @@
 
 static bool state_esc = false;
 static bool state_spam = false;
+static bool pscr_blocked = false;
+static uint8_t pscr_code;
 
 static uint16_t state_spam_timer = 0;
 static uint16_t state_spam_interval = 25; // ms
@@ -70,6 +72,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
         case C_SPAM:
             state_spam = record->event.pressed;
             state_spam_timer = timer_read();
+            return false;
+        // custom handling for F3 on layer to work with minecraft
+        case KC_F3:
+            pscr_blocked = record->event.pressed;
+            return true;
+        case C_PSCR:
+            if(record->event.pressed){
+                if(pscr_blocked){
+                    pscr_code = KC_G;
+                } else {
+                    pscr_code = KC_PSCR;
+                }
+
+                register_code(pscr_code);
+            } else {
+                unregister_code(pscr_code);
+            }
             return false;
         default:
             return true;
