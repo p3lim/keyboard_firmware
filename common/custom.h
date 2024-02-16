@@ -10,5 +10,9 @@
 enum {
     C_ESC0 = SAFE_RANGE, // layer 0 esc
     C_ESC1,              // layer 1 esc
+    C_KVM1,
+    C_KVM2,
+    C_KVM3,
+    C_KVM4,
     C_SPAM
 };

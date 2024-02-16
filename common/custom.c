@@ -39,6 +39,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
                 unregister_code(state_esc ? KC_ESCAPE : KC_GRAVE);
             }
             return false;
+        case C_KVM1:
+            if(record->event.pressed){
+                tap_code_delay(KC_SCRL, 50);
+                tap_code_delay(KC_SCRL, 50);
+                tap_code(KC_1);
+            }
+            return false;
+        case C_KVM2:
+            if(record->event.pressed){
+                tap_code_delay(KC_SCRL, 50);
+                tap_code_delay(KC_SCRL, 50);
+                tap_code(KC_2);
+            }
+            return false;
+        case C_KVM3:
+            if(record->event.pressed){
+                tap_code_delay(KC_SCRL, 50);
+                tap_code_delay(KC_SCRL, 50);
+                tap_code(KC_3);
+            }
+            return false;
+        case C_KVM4:
+            if(record->event.pressed){
+                tap_code_delay(KC_SCRL, 50);
+                tap_code_delay(KC_SCRL, 50);
+                tap_code(KC_4);
+            }
+            return false;
         case C_SPAM:
             state_spam = record->event.pressed;
             state_spam_timer = timer_read();
