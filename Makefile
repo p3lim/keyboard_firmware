@@ -1,7 +1,7 @@
 setup: qmk
 
 qmk:
-	git submodule update --init --recursive
+	qmk setup -y -H $(PWD)/qmk_firmware
 
 link: clean
 	# userspace
@@ -43,3 +43,13 @@ bface_build:
 	make -C qmk_firmware winkeyless/bface:custom
 	mkdir -p hex
 	cp qmk_firmware/.build/winkeyless_bface_custom.hex hex/bface.hex
+
+bootloadhid: udev
+	sudo apt install -y libusb-dev gcc make
+	curl -sSL https://www.obdev.at/downloads/vusb/bootloadHID.2012-12-08.tar.gz | tar -xz -C /tmp
+	make -C /tmp/bootloadHID.2012-12-08/commandline
+	sudo cp /tmp/bootloadHID.2012-12-08/commandline/bootloadHID /usr/local/bin/
+	rm -rf /tmp/bootloadHID.2012-12-08
+
+udev:
+	sudo cp qmk_firmware/util/udev/50-qmk.rules /etc/udev/rules.d/

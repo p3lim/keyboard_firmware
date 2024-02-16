@@ -9,24 +9,27 @@ The repository is structured as such:
 
 ## Setup
 
-We'll use QMK's CLI to set up dependencies for us, but we're not going to use their bootstrapped repository.
+We'll use QMK's CLI to set up dependencies for us.
 
 ```bash
-pip install --user qmk
-qmk setup -y -H /tmp/qmk ; rm -rf /tmp/qmk
-```
-
-We'll also want [Teensy Loader](https://www.pjrc.com/teensy/loader_cli.html):
-```bash
-apt install teensy-loader-cli
+pip install --user qmk # or `nix-shell -p qmk`
 ```
 
 ### udev
 
 To communicate with the bootloader on Linux we need extra privileges.  
-See [the official documentation](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules) on how to set this up.
+See [the official documentation](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules) on how to set this up, or run `make udev && reboot`.
 
 Teensy also needs this, see [their udev rules](https://www.pjrc.com/teensy/00-teensy.rules).
+
+### toolkit
+
+To flash bface we'll need `bootloadHID`, install with `make bootloadhid`.
+
+To flash p60 we'll need [Teensy Loader](https://www.pjrc.com/teensy/loader_cli.html):
+```bash
+apt install teensy-loader-cli # or `nix-shell -p teensy-loader-cli`
+```
 
 ## Flashing
 
