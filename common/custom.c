@@ -45,8 +45,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
             state_spam = record->event.pressed;
             state_spam_timer = timer_read();
             return false;
-        // custom handling for F3 on layer to work with minecraft
         case KC_F3:
+            // custom handling for F3 on layer to work with minecraft
             pscr_blocked = record->event.pressed;
             return true;
         case C_PSCR:
